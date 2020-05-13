@@ -38,19 +38,15 @@ public class Database {
             System.out.println("=========================================");
 
             // Create and execute a SELECT SQL statement.
-            String selectSql = "SELECT TOP 20 pc.Name as CategoryName, p.name as ProductName "
-                    + "FROM [SalesLT].[ProductCategory] pc "
-                    + "JOIN [SalesLT].[Product] p ON pc.productcategoryid = p.productcategoryid";
+            String selectSql = "SELECT * FROM Measurements ";
 
             try (Statement statement = connection.createStatement();
                  ResultSet resultSet = statement.executeQuery(selectSql)) {
 
                 // Print results from select statement
-                System.out.println("Top 20 categories:");
                 while (resultSet.next())
                 {
-                    System.out.println(resultSet.getString(1) + " "
-                            + resultSet.getString(2));
+                    System.out.println(resultSet.getInt("Id")+" "+resultSet.getDouble("Temperature")+" "+resultSet.getDouble("Humidity")+" "+resultSet.getDate("Created")+" "+resultSet.getTime("Created"));
                 }
                 connection.close();
             }
