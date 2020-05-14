@@ -29,14 +29,14 @@ public class Database {
                 + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
 
     }
-    public List<Sensor> getLatest(){
+    public List<Sensor> getLatest(int limit){
         Connection connection = null;
         List<Sensor> sensorList = new ArrayList<>();
         try {
             connection = DriverManager.getConnection(p.getProperty("url"));
             String schema = connection.getSchema();
 
-            String selectSql = "SELECT * FROM Measurements ";
+            String selectSql = "SELECT TOP " + limit  + " * FROM Measurements ORDER BY Id DESC";
 
             try (Statement statement = connection.createStatement();
                  ResultSet resultSet = statement.executeQuery(selectSql)) {
@@ -53,4 +53,5 @@ public class Database {
         }
         return sensorList;
     }
+
 }
