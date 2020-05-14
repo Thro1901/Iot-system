@@ -22,7 +22,7 @@ public class GetValueRightNow extends HttpServlet {
                 "<head>\n" +
                 "</head>\n" +
                 "<body>\n" );
-        out.println("<h4>  Data from SQL  </h4> ");
+        out.println("<h4>  Last Data From SQL  </h4> ");
         out.println("<table style=\"width:30%\">\n" +
                 "<tr>\n" +
                 "<th>Temperature</th>\n" +
