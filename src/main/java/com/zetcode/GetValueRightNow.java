@@ -18,8 +18,14 @@ public class GetValueRightNow extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         var out = response.getOutputStream();
-        out.println("<html>\n" +
+        out.println("<!DOCTYPE html>\n" +
+                "<html>\n" +
                 "<head>\n" +
+                "<style>\n" +
+                "table {\n" +
+                "border-collapse: collapse;\n" +
+                "}\n" +
+                "</style>\n" +
                 "</head>\n" +
                 "<body>\n" );
         out.println("<h4>  Last Data From SQL  </h4> ");
