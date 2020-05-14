@@ -1,5 +1,7 @@
 package repository;
 
+import models.Sensor;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -9,44 +11,39 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.DriverManager;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class Database {
+    Properties p = new Properties();
 
 
-    public static void main(String[] args) throws IOException {
-
-        Properties p = new Properties();
-
+    public Database() throws IOException {
         p.load(new FileInputStream("src/config.properties"));
-
-        // Connect to database
         String hostName = p.getProperty("hostName");
         String dbName = p.getProperty("dbName");
         String user = p.getProperty("user");
         String password = p.getProperty("password");
         String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;"
                 + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
+
+    }
+    public List<Sensor> getLatest(){
         Connection connection = null;
-
+        List<Sensor> sensorList = new ArrayList<>();
         try {
-            connection = DriverManager.getConnection(url);
+            connection = DriverManager.getConnection(p.getProperty("url"));
             String schema = connection.getSchema();
-            System.out.println("Successful connection - Schema: " + schema);
 
-            System.out.println("Query data example:");
-            System.out.println("=========================================");
-
-            // Create and execute a SELECT SQL statement.
             String selectSql = "SELECT * FROM Measurements ";
 
             try (Statement statement = connection.createStatement();
                  ResultSet resultSet = statement.executeQuery(selectSql)) {
 
-                // Print results from select statement
                 while (resultSet.next())
                 {
-                    System.out.println(resultSet.getInt("Id")+" "+resultSet.getDouble("Temperature")+" "+resultSet.getDouble("Humidity")+" "+resultSet.getDate("Created")+" "+resultSet.getTime("Created"));
+                    sensorList.add(new Sensor(resultSet.getInt("Id"),resultSet.getDouble("Temperature"),resultSet.getDouble("Humidity"),resultSet.getDate("Created").toString(),resultSet.getTime("Created").toString()));
                 }
                 connection.close();
             }
@@ -54,6 +51,6 @@ public class Database {
         catch (Exception e) {
             e.printStackTrace();
         }
+        return sensorList;
     }
 }
-
