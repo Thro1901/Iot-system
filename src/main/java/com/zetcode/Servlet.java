@@ -21,6 +21,11 @@ public class Servlet extends HttpServlet {
 
         out.println("<html>\n" +
                 "<head>\n" +
+                "<style>\n" +
+                "table {\n" +
+                "border-collapse: collapse;\n" +
+                "}\n" +
+                "</style>\n" +
                 "</head>\n" +
                 "<body>\n" );
         out.println("<form action=\"http://localhost:8080/valuenow\">\n" +
