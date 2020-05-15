@@ -53,7 +53,6 @@ public class DateSearch extends HttpServlet {
             out.println("<h4>  Last Data From SQL  </h4> ");
             out.println("<table border=\"1\" style=\"width:30%\">\n" +
                     "<tr>\n" +
-                    //"<th>Id</th>\n" +
                     "<th>Temperature</th>\n" +
                     "<th>Humidity</th>\n" +
                     "<th>Date</th>\n" +
@@ -61,14 +60,12 @@ public class DateSearch extends HttpServlet {
                     "</tr>\n");
 
             for (Sensor s: db.getBetweenDates(d1,d2)){
-
-                out.println("<tr>" +
-                        //"<td>" + s.getId() + "</td>\n" +
-                        "<td>" +  s.getTemperature() + " °C</td>\n" +
-                        "<td>" +  s.getHumidity() + " %</td>\n" +
-                        "<td>" +  s.getDate() + " </td>\n" +
-                        "<td>" + s.getTime() + " </td>\n" );
-                out.println("</tr>\n");
+                    out.println("<tr>" +
+                            "<td>" + s.getTemperature() + " °C</td>\n" +
+                            "<td>" + s.getHumidity() + " %</td>\n" +
+                            "<td>" + s.getDate() + " </td>\n" +
+                            "<td>" + s.getTime() + " </td>\n");
+                    out.println("</tr>\n");
             }
 
             out.println("</table>");

@@ -41,7 +41,7 @@ public class Servlet extends HttpServlet {
                 "<th colspan=\"4\">Time</th>\n" +
                 "</tr>\n");
 
-        for (Sensor s: db.getLatest(db.getAllValues().size())){
+        for (Sensor s: db.getAllValues()){
 
             out.println("<tr>" +
             "<td>" +  s.getTemperature() + " °C</td>\n" +

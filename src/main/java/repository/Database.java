@@ -85,7 +85,7 @@ public class Database {
             connection = DriverManager.getConnection(p.getProperty("url"));
             String schema = connection.getSchema();
 
-            String selectSql = "SELECT * FROM Measurements";
+            String selectSql = "SELECT * FROM Measurements ORDER BY Created DESC";
 
             try (Statement statement = connection.createStatement();
                  ResultSet resultSet = statement.executeQuery(selectSql)) {
