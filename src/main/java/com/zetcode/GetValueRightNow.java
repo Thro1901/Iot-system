@@ -21,11 +21,6 @@ public class GetValueRightNow extends HttpServlet {
         out.println("<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +
-                "<style>\n" +
-                "table {\n" +
-                "border-collapse: collapse;\n" +
-                "}\n" +
-                "</style>\n" +
                 "</head>\n" +
                 "<body>\n" );
        out.println("<form action=\"http://localhost:8080/sensor\">\n" +
