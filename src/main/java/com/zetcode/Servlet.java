@@ -27,8 +27,8 @@ public class Servlet extends HttpServlet {
         out.println("<table style=\"width:30%\">\n" +
                 "<tr>\n" +
                 "<th>Id</th>\n" +
-                "<th>Humidity</th>\n" +
                 "<th>Temperature</th>\n" +
+                "<th>Humidity</th>\n" +
                 "<th>Date</th>\n" +
                 "<th colspan=\"4\">Time</th>\n" +
                 "</tr>\n");
@@ -37,8 +37,8 @@ public class Servlet extends HttpServlet {
 
             out.println("<tr>" +
             "<td>" +  s.getId() +" </td>\n" +
-            "<td>" +  s.getTemperature() +" %</td>\n" +
-            "<td>" +  s.getHumidity() + " °C </td>\n" +
+            "<td>" +  s.getTemperature() + " °C</td>\n" +
+            "<td>" +  s.getHumidity() + " %</td>\n" +
             "<td>" +  s.getDate() + " </td>\n" +
             "<td>" + s.getTime() + " </td>\n" );
 
