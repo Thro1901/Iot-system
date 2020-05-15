@@ -33,6 +33,7 @@ public class DateSearch extends HttpServlet {
                 "<input type=\"submit\" value=\"Go back\" />\n" +
                 "</form>");
 
+
         if (d1 == null || d2== null){
             out.println("<form>\n" +
                     "<label for=\"firstDate\">First date:</label><br>\n" +
@@ -71,9 +72,11 @@ public class DateSearch extends HttpServlet {
                         "<td>" + s.getTime() + " </td>\n" );
                 out.println("</tr>\n");
             }
-            out.println("</table>\n" +
-                    "</body>\n" +
+
+            out.println("</table>");
+            out.println("</body>\n" +
                     "</html>");
+
         }
     }
 }
