@@ -33,7 +33,6 @@ public class DateSearch extends HttpServlet {
                 "<input type=\"submit\" value=\"Go back\" />\n" +
                 "</form>");
 
-
         if (d1 == null || d2== null){
             out.println("<form>\n" +
                     "<label for=\"firstDate\">First date:</label><br>\n" +
@@ -43,7 +42,6 @@ public class DateSearch extends HttpServlet {
                     "<input type=\"submit\" value=\"Submit\"\n>" +
                     "</form>");
         }
-
         else{
             out.println("<form>\n" +
                     "<label for=\"firstDate\">First date:</label><br>\n" +

@@ -28,8 +28,6 @@ public class GetValueRightNow extends HttpServlet {
                "<input type=\"submit\" value=\"Go back\" />\n" +
                "</form>");
 
-
-
         out.println("<h4>  Last Data From SQL  </h4> ");
         out.println("<table border=\"1\" style=\"width:30%\">\n" +
                 "<tr>\n" +
