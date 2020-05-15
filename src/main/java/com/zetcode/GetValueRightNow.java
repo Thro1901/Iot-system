@@ -28,9 +28,9 @@ public class GetValueRightNow extends HttpServlet {
                 "</style>\n" +
                 "</head>\n" +
                 "<body>\n" );
-       out.println("<form action=\"https://google.com\">\n" +
+       out.println("<form action=\"http://localhost:8080/sensor\">\n" +
 
-               "<input type=\"submit\" value=\"Go to Google\" />\n" +
+               "<input type=\"submit\" value=\"Go back\" />\n" +
                "</form>");
 
 

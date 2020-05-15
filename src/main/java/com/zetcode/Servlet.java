@@ -23,6 +23,12 @@ public class Servlet extends HttpServlet {
                 "<head>\n" +
                 "</head>\n" +
                 "<body>\n" );
+        out.println("<form action=\"http://localhost:8080/valuenow\">\n" +
+
+                "<input type=\"submit\" value=\"Go to last value\" />\n" +
+                "</form>");
+
+
         out.println("<h4>  Data from SQL  </h4> ");
         out.println("<table style=\"width:30%\">\n" +
                 "<tr>\n" +
