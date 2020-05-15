@@ -53,5 +53,29 @@ public class Database {
         }
         return sensorList;
     }
+    public List<Sensor> getBetweenDates(String first, String second){
+        Connection connection = null;
+        List<Sensor> sensorList = new ArrayList<>();
+        try {
+            connection = DriverManager.getConnection(p.getProperty("url"));
+            String schema = connection.getSchema();
+
+            String selectSql = "SELECT * FROM Measurements  WHERE Created >= '"+first+" 00:00:00.0' AND Created < '"+second+" 23:59:59.999' order by created desc;";
+
+            try (Statement statement = connection.createStatement();
+                 ResultSet resultSet = statement.executeQuery(selectSql)) {
+
+                while (resultSet.next())
+                {
+                    sensorList.add(new Sensor(resultSet.getInt("Id"),resultSet.getDouble("Temperature"),resultSet.getDouble("Humidity"),resultSet.getDate("Created").toString(),resultSet.getTime("Created").toString()));
+                }
+                connection.close();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sensorList;
+    }
 
 }
