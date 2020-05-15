@@ -32,6 +32,10 @@ public class Servlet extends HttpServlet {
 
                 "<input type=\"submit\" value=\"Go to last value\" />\n" +
                 "</form>");
+        out.println("<form action=\"http://localhost:8080/SearchDates?firstDate=2020-05-14&secondDate=2020-05-15\">\n" +
+
+                "<input type=\"submit\" value=\"Search between dates\" />\n" +
+                "</form>");
 
 
         out.println("<h4>  Data from SQL  </h4> ");
