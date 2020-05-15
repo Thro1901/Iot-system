@@ -32,7 +32,7 @@ public class Servlet extends HttpServlet {
         out.println("<h4>  Data from SQL  </h4> ");
         out.println("<table style=\"width:30%\">\n" +
                 "<tr>\n" +
-                "<th>Id</th>\n" +
+                //"<th>Id</th>\n" +
                 "<th>Temperature</th>\n" +
                 "<th>Humidity</th>\n" +
                 "<th>Date</th>\n" +
@@ -42,7 +42,7 @@ public class Servlet extends HttpServlet {
         for (Sensor s: db.getLatest(50)){
 
             out.println("<tr>" +
-            "<td>" +  s.getId() +" </td>\n" +
+            //"<td>" +  s.getId() +" </td>\n" +
             "<td>" +  s.getTemperature() + " °C</td>\n" +
             "<td>" +  s.getHumidity() + " %</td>\n" +
             "<td>" +  s.getDate() + " </td>\n" +
