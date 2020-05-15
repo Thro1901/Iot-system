@@ -16,14 +16,13 @@ public class DateSearch extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Database db = new Database();
 
-        String d1 = request.getParameter("firstDate");
-        String d2 = request.getParameter("secondDate");
-
-
-
         response.setContentType("text/html;charset=UTF-8");
 
         var out = response.getOutputStream();
+
+        String d1 = request.getParameter("firstDate");
+        String d2 = request.getParameter("secondDate");
+
         out.println("<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +
@@ -33,45 +32,49 @@ public class DateSearch extends HttpServlet {
 
                 "<input type=\"submit\" value=\"Go back\" />\n" +
                 "</form>");
-        out.println("<form>\n" +
-        "<label for=\"firstDate\">First date:</label><br>\n" +
-        "<input type=\"text\" id=\"firstDate\" name=\"firstDate\" value=\"2020-05-14\"><br>\n" +
-        "<label for=\"secondDate\">Second Date:</label><br>\n" +
-        "<input type=\"text\" id=\"secondDate\" name=\"secondDate\" value=\"2020-05-15\">\n"+
-        "<input type=\"submit\" value=\"Submit\"\n>" +
-                "</form>");
 
-
-
-
-
-
-
-
-
-        out.println("<h4>  Last Data From SQL  </h4> ");
-        out.println("<table border=\"1\" style=\"width:30%\">\n" +
-                "<tr>\n" +
-                //"<th>Id</th>\n" +
-                "<th>Temperature</th>\n" +
-                "<th>Humidity</th>\n" +
-                "<th>Date</th>\n" +
-                "<th colspan=\"4\">Time</th>\n" +
-                "</tr>\n");
-
-        for (Sensor s: db.getBetweenDates(d1,d2)){
-
-            out.println("<tr>" +
-                    //"<td>" + s.getId() + "</td>\n" +
-                    "<td>" +  s.getTemperature() + " °C</td>\n" +
-                    "<td>" +  s.getHumidity() + " %</td>\n" +
-                    "<td>" +  s.getDate() + " </td>\n" +
-                    "<td>" + s.getTime() + " </td>\n" );
-            out.println("</tr>\n");
+        if (d1 == null || d2== null){
+            out.println("<form>\n" +
+                    "<label for=\"firstDate\">First date:</label><br>\n" +
+                    "<input type=\"text\" id=\"firstDate\" name=\"firstDate\" value=\"2020-05-14\"><br>\n" +
+                    "<label for=\"secondDate\">Second Date:</label><br>\n" +
+                    "<input type=\"text\" id=\"secondDate\" name=\"secondDate\" value=\"2020-05-15\">\n"+
+                    "<input type=\"submit\" value=\"Submit\"\n>" +
+                    "</form>");
         }
-        out.println("</table>\n" +
-                "</body>\n" +
-                "</html>");
+
+        else{
+            out.println("<form>\n" +
+                    "<label for=\"firstDate\">First date:</label><br>\n" +
+                    "<input type=\"text\" id=\"firstDate\" name=\"firstDate\" value=\"2020-05-14\"><br>\n" +
+                    "<label for=\"secondDate\">Second Date:</label><br>\n" +
+                    "<input type=\"text\" id=\"secondDate\" name=\"secondDate\" value=\"2020-05-15\">\n"+
+                    "<input type=\"submit\" value=\"Submit\"\n>" +
+                    "</form>");
+            out.println("<h4>  Last Data From SQL  </h4> ");
+            out.println("<table border=\"1\" style=\"width:30%\">\n" +
+                    "<tr>\n" +
+                    //"<th>Id</th>\n" +
+                    "<th>Temperature</th>\n" +
+                    "<th>Humidity</th>\n" +
+                    "<th>Date</th>\n" +
+                    "<th colspan=\"4\">Time</th>\n" +
+                    "</tr>\n");
+
+            for (Sensor s: db.getBetweenDates(d1,d2)){
+
+                out.println("<tr>" +
+                        //"<td>" + s.getId() + "</td>\n" +
+                        "<td>" +  s.getTemperature() + " °C</td>\n" +
+                        "<td>" +  s.getHumidity() + " %</td>\n" +
+                        "<td>" +  s.getDate() + " </td>\n" +
+                        "<td>" + s.getTime() + " </td>\n" );
+                out.println("</tr>\n");
+            }
+            out.println("</table>\n" +
+                    "</body>\n" +
+                    "</html>");
+        }
     }
 }
 
