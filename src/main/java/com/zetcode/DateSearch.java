@@ -42,7 +42,7 @@ public class DateSearch extends HttpServlet {
 
 
         out.println("<h4>  Last Data From SQL  </h4> ");
-        out.println("<table style=\"width:30%\">\n" +
+        out.println("<table border=\"1\" style=\"width:30%\">\n" +
                 "<tr>\n" +
                 //"<th>Id</th>\n" +
                 "<th>Temperature</th>\n" +
