@@ -31,8 +31,9 @@ public class GetValueRightNow extends HttpServlet {
         out.println("<h4>  Last Data From SQL  </h4> ");
         out.println("<table style=\"width:30%\">\n" +
                 "<tr>\n" +
-                "<th>Temperature</th>\n" +
+                "<th>Id</th>\n" +
                 "<th>Humidity</th>\n" +
+                "<th>Temperature</th>\n" +
                 "<th>Date</th>\n" +
                 "<th colspan=\"4\">Time</th>\n" +
                 "</tr>\n");
@@ -40,11 +41,11 @@ public class GetValueRightNow extends HttpServlet {
         for (Sensor s: db.getLatest(1)){
 
             out.println("<tr>" +
-                    "<td>" +  s.getTemperature() +" °C</td>\n" +
-                    "<td>" +  s.getHumidity() + " %</td>\n" +
+                    "<td>" + s.getId() + "</td>\n" +
+                    "<td>" +  s.getTemperature() + " %</td>\n" +
+                    "<td>" +  s.getHumidity() + " °C</td>\n" +
                     "<td>" +  s.getDate() + " </td>\n" +
                     "<td>" + s.getTime() + " </td>\n" );
-
             out.println("</tr>\n");
         }
         out.println("</table>\n" +
