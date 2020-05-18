@@ -1,15 +1,19 @@
 package com.zetcode;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 
 @WebServlet(name = "currentvalue", urlPatterns = {"/Currentvalue"})
 public class CurrentValueFromFeather extends HttpServlet {
@@ -27,18 +31,22 @@ public class CurrentValueFromFeather extends HttpServlet {
                 "<input type=\"submit\" value=\"Go back\" />\n" +
                 "</form>");
 
-        URL url = new URL("http://5.150.211.190/");
+     URL oracle = new URL(url);
 
-        URLConnection con = url.openConnection();
-        InputStream is =con.getInputStream();
+    BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream()));
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        while ((inputLine = in.readLine()) != null){
+            out.println(inputLine);
 
-        String line = null;
-
-        while ((line = br.readLine()) != null) {
-            out.println(line);
         }
+
+        // Ett annat sätt att göra det på. Samma resultat
+
+       // String url = "http://5.150.211.190";
+        //Document document = Jsoup.connect(url).get();
+       // out.println(document.text());
+       // out.println(inputLine);
+        in.close();
 
     }
 }
