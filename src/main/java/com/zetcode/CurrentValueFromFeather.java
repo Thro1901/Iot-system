@@ -12,7 +12,8 @@ import java.net.URL;
 @WebServlet(name = "currentvalue", urlPatterns = {"/Currentvalue"})
 public class CurrentValueFromFeather extends HttpServlet {
     String inputLine;
-    String url = "http://5.150.211.190/";
+    String all;
+    String url = "http://5.150.211.190";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -29,10 +30,10 @@ public class CurrentValueFromFeather extends HttpServlet {
 
     BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream()));
 
-        while ((inputLine = in.readLine()) != null)
+        while ((inputLine = in.readLine()) != null){
+            // System.out.println(inputLine);
             out.println(inputLine);
-
-            System.out.println(inputLine);
-        in.close();
+            in.close();
+        }
     }
 }
