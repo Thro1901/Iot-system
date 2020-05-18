@@ -31,7 +31,7 @@ public class CurrentValueFromFeather extends HttpServlet {
 
         URLConnection con = url.openConnection();
         InputStream is =con.getInputStream();
-        
+
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
         String line = null;
