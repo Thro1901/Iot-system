@@ -20,12 +20,19 @@ public class CurrentValueFromFeather extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     var out = response.getOutputStream();
 
+        out.println("<form action=\"http://localhost:8080/sensor\">\n" +
+
+                "<input type=\"submit\" value=\"Go back\" />\n" +
+                "</form>");
+
     URL oracle = new URL(url);
 
     BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream()));
 
         while ((inputLine = in.readLine()) != null)
             out.println(inputLine);
+
+            System.out.println(inputLine);
         in.close();
     }
 }
