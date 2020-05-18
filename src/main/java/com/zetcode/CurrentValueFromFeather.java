@@ -12,7 +12,7 @@ import java.net.URL;
 @WebServlet(name = "currentvalue", urlPatterns = {"/Currentvalue"})
 public class CurrentValueFromFeather extends HttpServlet {
     String inputLine;
-   // String url = ;
+    String url = "http://5.150.211.190/";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -20,7 +20,7 @@ public class CurrentValueFromFeather extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
     var out = response.getOutputStream();
 
-    URL oracle = new URL("5.150.211.190");
+    URL oracle = new URL(url);
 
     BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream()));
 
