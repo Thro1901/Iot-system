@@ -32,9 +32,11 @@ public class Servlet extends HttpServlet {
                 "<input type=\"submit\" value=\"Search between dates\" />\n" +
                 "</form>");
 
-        out.println("<form action=\"http://localhost:8080/Currentvalue\">\n" +
+        out.println("<form action=\"http://5.150.211.19\">\n" +
                 "<input type=\"submit\" value=\"Go to current value\" />\n" +
                 "</form>");
+
+
 
         out.println("<h4>  Data from SQL  </h4> ");
         out.println("<table border=\"1\" style=\"width:30%\">\n" +

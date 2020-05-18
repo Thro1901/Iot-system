@@ -6,13 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 
 @WebServlet(name = "currentvalue", urlPatterns = {"/Currentvalue"})
 public class CurrentValueFromFeather extends HttpServlet {
     String inputLine;
-    String all;
     String url = "http://5.150.211.190";
 
     @Override
@@ -26,14 +28,19 @@ public class CurrentValueFromFeather extends HttpServlet {
                 "<input type=\"submit\" value=\"Go back\" />\n" +
                 "</form>");
 
-    URL oracle = new URL(url);
+        URL url = new URL("http://5.150.211.190/");
 
-    BufferedReader in = new BufferedReader(new InputStreamReader(oracle.openStream()));
+        URLConnection con = url.openConnection();
+        InputStream is =con.getInputStream();
 
-        while ((inputLine = in.readLine()) != null){
-            // System.out.println(inputLine);
-            out.println(inputLine);
-            in.close();
+
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+
+        String line = null;
+
+        while ((line = br.readLine()) != null) {
+            out.println(line);
         }
     }
 }
