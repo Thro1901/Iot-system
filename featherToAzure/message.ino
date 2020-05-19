@@ -14,14 +14,10 @@ void handleValues() {
  server.send(200, "text/plain", values);
 }
 
-void handleTemperature() {
-  char temp[10];
- server.send(200, "text/plain", dtostrf(dht.readTemperature(),6,1,temp));
-}
-
-void handleHumidity() {
-  char hum [10];
-  server.send(200, "text/plain", dtostrf(dht.readHumidity(),6,1,hum));
+void handleSaveToDB() {
+  saveToDB = true;
+  String res = "Values saved to database.";
+  server.send(200, "text/plain", res);
 }
 
 bool readMessage(int messageId, char *payload)

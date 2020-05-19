@@ -12,6 +12,7 @@
 
 static bool messagePending = false;
 static bool messageSending = true;
+static bool saveToDB = false;
 static unsigned long interval = INTERVAL;
 
 // FYLL I DESSA UPPGIFTER
@@ -86,8 +87,7 @@ void setup()
     initSensor();
     initTime();
     server.on("/",handleRoot);
-    server.on("/readHumidity", handleHumidity);
-    server.on("/readTemperature", handleTemperature);
+    server.on("/saveToDB", handleSaveToDB);
     server.on("/getValues", handleValues);
     server.begin();
     iotHubClientHandle = IoTHubClient_LL_CreateFromConnectionString(connectionString, MQTT_Protocol);
@@ -110,7 +110,7 @@ void loop()
 {
   server.handleClient();
   if (!messagePending && messageSending){
-    if (millis() - currentMillis > interval || currentMillis == 0){
+    if (millis() - currentMillis > interval || currentMillis == 0 || saveToDB){
         char messagePayload[MESSAGE_MAX_LEN];
         bool temperatureAlert = readMessage(messageCount, messagePayload);
         
@@ -118,7 +118,10 @@ void loop()
         
         messageCount++;
         //delay(interval);
-        currentMillis = millis();
+        if (saveToDB)
+          saveToDB = false;
+        else
+          currentMillis = millis();
     }
   }
 
