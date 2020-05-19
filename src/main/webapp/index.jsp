@@ -8,7 +8,7 @@
 <body>
 
 <p>
-    This is home page. Call <a href="/sensor">Servlet</a>
+   <h3> Welcome to Roth-teams homepage. Call </h3><a href="/sensor">Servlet</a>
 </p>
 
 </body>
