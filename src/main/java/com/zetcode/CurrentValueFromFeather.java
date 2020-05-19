@@ -18,6 +18,7 @@ import java.util.Date;
 @WebServlet(name = "currentvalue", urlPatterns = {"/Currentvalue"})
 public class CurrentValueFromFeather extends HttpServlet {
 
+    String dateNow;
     String timeNow;
     String temp;
     String hum;
@@ -53,20 +54,24 @@ public class CurrentValueFromFeather extends HttpServlet {
                 "<th>Temperature</th>\n" +
                 "<th>Humidity</th>\n" +
                 "<th>Date</th>\n" +
+                "<th>Time</th>\n" +
                 "</tr>\n");
 
         temp = in.readLine();
         hum = in.readLine();
-        timeNow = in.readLine();
+        dateNow = in.readLine();
 
-        long unix_seconds = Long.parseLong(timeNow);
+        long unix_seconds = Long.parseLong(dateNow);
         Date date = new Date(unix_seconds * 1000);
-        SimpleDateFormat jdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        timeNow = jdf.format(date);
+        SimpleDateFormat jdf = new SimpleDateFormat("yyyy-MM-dd");
+        dateNow = jdf.format(date);
+        SimpleDateFormat jdf1 = new SimpleDateFormat("HH:mm:ss");
+        timeNow = jdf1.format(date);
 
             out.println("<tr>" +
                     "<td>" + temp + " °C</td>\n" +
                     "<td>" + hum + " %</td>\n" +
+                    "<td>" + dateNow + " </td>\n" +
                     "<td>" + timeNow + " </td>\n");
 
         out.println("</tr>\n");
