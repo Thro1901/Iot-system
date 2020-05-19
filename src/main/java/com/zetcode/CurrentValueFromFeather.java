@@ -38,9 +38,7 @@ public class CurrentValueFromFeather extends HttpServlet {
                 "<input type=\"submit\" value=\"Go back\" />\n" +
                 "</form>");
 
-        out.println("<form action=\"http://localhost:8080/Currentvalue\">\n" +
-                "<input type=\"submit\" name=\"button1\" value=\"Button 1\" />" +
-                "</form>");
+
 
     URL oracle = new URL(url);
 
@@ -71,12 +69,16 @@ public class CurrentValueFromFeather extends HttpServlet {
 
         out.println("</tr>\n");
         out.println("</table>");
+        out.println("<h1> </h1>");
+        out.println("<form action=\"http://localhost:8080/Currentvalue\">\n" +
+                "<input type=\"submit\" name=\"Update to db\" value=\"send\" />" +
+                "</form>");
         out.println("</body>\n" +
                 "</html>");
 
         in.close();
 
-        if (request.getParameter("button1") != null) {
+        if (request.getParameter("Update to db") != null) {
             addToDatabase();
         }
 
