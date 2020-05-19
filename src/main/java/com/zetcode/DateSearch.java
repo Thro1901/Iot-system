@@ -45,9 +45,9 @@ public class DateSearch extends HttpServlet {
         else{
             out.println("<form>\n" +
                     "<label for=\"firstDate\">First date:</label><br>\n" +
-                    "<input type=\"text\" id=\"firstDate\" name=\"firstDate\" value=\"2020-05-14\"><br>\n" +
+                    "<input type=\"text\" id=\"firstDate\" name=\"firstDate\" value=\"2020-05-13\"><br>\n" +
                     "<label for=\"secondDate\">Second Date:</label><br>\n" +
-                    "<input type=\"text\" id=\"secondDate\" name=\"secondDate\" value=\"2020-05-15\">\n"+
+                    "<input type=\"text\" id=\"secondDate\" name=\"secondDate\" value=\"2020-05-20\">\n"+
                     "<input type=\"submit\" value=\"Submit\"\n>" +
                     "</form>");
             out.println("<h4>  Last Data From SQL  </h4> ");
