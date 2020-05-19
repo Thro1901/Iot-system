@@ -1,5 +1,6 @@
 package com.zetcode;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,6 +36,10 @@ public class CurrentValueFromFeather extends HttpServlet {
                 "<body>\n" );
         out.println("<form action=\"http://localhost:8080/sensor\">\n" +
                 "<input type=\"submit\" value=\"Go back\" />\n" +
+                "</form>");
+
+        out.println("<form action=\"http://localhost:8080/sensor\">\n" +
+                "<input type=\"submit\" name=\"button1\" value=\"Button 1\" />" +
                 "</form>");
 
     URL oracle = new URL(url);
@@ -68,5 +76,28 @@ public class CurrentValueFromFeather extends HttpServlet {
 
         in.close();
 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        if (request.getParameter("button1") != null) {
+            addToDatabase();
+        }
+        request.getRequestDispatcher("Currentvalue").forward(request, response);
+    }
+
+    public void addToDatabase() throws IOException {
+        URL url = new URL("http://5.150.211.190/saveToDB");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        int responseCode = connection.getResponseCode();
+
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            System.out.println("Success!");
+        }
+        else {
+            System.out.println("FAILURE");
+        }
     }
 }
