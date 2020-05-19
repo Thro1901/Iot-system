@@ -38,7 +38,7 @@ public class CurrentValueFromFeather extends HttpServlet {
                 "<input type=\"submit\" value=\"Go back\" />\n" +
                 "</form>");
 
-        out.println("<form action=\"http://localhost:8080/sensor\">\n" +
+        out.println("<form action=\"http://localhost:8080/Currentvalue\">\n" +
                 "<input type=\"submit\" name=\"button1\" value=\"Button 1\" />" +
                 "</form>");
 
@@ -76,15 +76,10 @@ public class CurrentValueFromFeather extends HttpServlet {
 
         in.close();
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         if (request.getParameter("button1") != null) {
             addToDatabase();
         }
-        request.getRequestDispatcher("Currentvalue").forward(request, response);
+
     }
 
     public void addToDatabase() throws IOException {
@@ -93,8 +88,18 @@ public class CurrentValueFromFeather extends HttpServlet {
         connection.setRequestMethod("GET");
         int responseCode = connection.getResponseCode();
 
+        String result = null;
+        StringBuilder response = new StringBuilder();
+
         if (responseCode == HttpURLConnection.HTTP_OK) {
-            System.out.println("Success!");
+
+            //NEDAN ÄR BARA FÖR FELSÖKNING
+            //NEDAN ÄR BARA FÖR FELSÖKNING
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            while ((result = in.readLine()) != null) {
+                response.append(result);
+            } in .close();
+            System.out.println("JSON String Result " + response.toString());
         }
         else {
             System.out.println("FAILURE");
