@@ -46,6 +46,7 @@ public class CurrentValueFromFeather extends HttpServlet {
                 "<th>Humidity</th>\n" +
                 "<th>Date</th>\n" +
                 "</tr>\n");
+
         temp = in.readLine();
         hum = in.readLine();
         timeNow = in.readLine();
