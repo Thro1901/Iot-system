@@ -71,14 +71,14 @@ public class CurrentValueFromFeather extends HttpServlet {
         out.println("</table>");
         out.println("<h1> </h1>");
         out.println("<form action=\"http://localhost:8080/Currentvalue\">\n" +
-                "<input type=\"submit\" name=\"Update to db\" value=\"send\" />" +
+                "<input type=\"submit\" name=\"Update\" value=\"Send to database\" />" +
                 "</form>");
         out.println("</body>\n" +
                 "</html>");
 
         in.close();
 
-        if (request.getParameter("Update to db") != null) {
+        if (request.getParameter("Update") != null) {
             addToDatabase();
         }
 
