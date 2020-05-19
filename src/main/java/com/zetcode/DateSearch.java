@@ -28,10 +28,13 @@ public class DateSearch extends HttpServlet {
                 "<head>\n" +
                 "</head>\n" +
                 "<body>\n" );
+
         out.println("<form action=\"http://localhost:8080/sensor\">\n" +
 
                 "<input type=\"submit\" value=\"Go back\" />\n" +
                 "</form>");
+
+        out.println("<h4>  Search between dates  </h4> ");
 
         if (d1 == null || d2== null){
             out.println("<form>\n" +
