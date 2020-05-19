@@ -39,6 +39,7 @@ public class CurrentValueFromFeather extends HttpServlet {
                 "<input type=\"submit\" value=\"Go back\" />\n" +
                 "</form>");
 
+        resultofAddtoDb = "";
 
 
     URL oracle = new URL(url);
