@@ -22,6 +22,7 @@ public class CurrentValueFromFeather extends HttpServlet {
     String temp;
     String hum;
     String url = "http://5.150.211.190/getValues";
+    String resultofAddtoDb = "";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -73,18 +74,22 @@ public class CurrentValueFromFeather extends HttpServlet {
         out.println("<form action=\"http://localhost:8080/Currentvalue\">\n" +
                 "<input type=\"submit\" name=\"Update\" value=\"Send to database\" />" +
                 "</form>");
-        out.println("</body>\n" +
-                "</html>");
+
 
         in.close();
 
         if (request.getParameter("Update") != null) {
-            addToDatabase();
+            resultofAddtoDb = addToDatabase();
         }
+
+
+        out.println("<h4>"+resultofAddtoDb+"</h4>" +
+                "</body>\n" +
+                "</html>");
 
     }
 
-    public void addToDatabase() throws IOException {
+    public String addToDatabase() throws IOException {
         URL url = new URL("http://5.150.211.190/saveToDB");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
@@ -94,7 +99,6 @@ public class CurrentValueFromFeather extends HttpServlet {
         StringBuilder response = new StringBuilder();
 
         if (responseCode == HttpURLConnection.HTTP_OK) {
-
             //NEDAN ÄR BARA FÖR FELSÖKNING
             //NEDAN ÄR BARA FÖR FELSÖKNING
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -106,5 +110,6 @@ public class CurrentValueFromFeather extends HttpServlet {
         else {
             System.out.println("FAILURE");
         }
+        return response.toString();
     }
 }
