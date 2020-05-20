@@ -2,7 +2,6 @@ package com.zetcode;
 
 import models.Sensor;
 import repository.Database;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +39,6 @@ public class GetValueRightNow extends HttpServlet {
         for (Sensor s: db.getLatest(1)){
 
             out.println("<tr>" +
-                    //"<td>" + s.getId() + "</td>\n" +
                     "<td>" +  s.getTemperature() + " °C</td>\n" +
                     "<td>" +  s.getHumidity() + " %</td>\n" +
                     "<td>" +  s.getDate() + " </td>\n" +
