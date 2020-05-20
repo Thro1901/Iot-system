@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 
 @WebServlet(name = "DateSearch", urlPatterns = {"/SearchDates"})
 public class DateSearch extends HttpServlet {
-
+    LocalDate date = LocalDate.now();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Database db = new Database();
@@ -39,18 +40,18 @@ public class DateSearch extends HttpServlet {
         if (d1 == null || d2== null){
             out.println("<form>\n" +
                     "<label for=\"firstDate\">First date:</label><br>\n" +
-                    "<input type=\"text\" id=\"firstDate\" name=\"firstDate\" value=\"2020-05-14\"><br>\n" +
+                    "<input type=\"text\" id=\"firstDate\" name=\"firstDate\" value=" + date.minusDays(7) + "><br>\n" +
                     "<label for=\"secondDate\">Second Date:</label><br>\n" +
-                    "<input type=\"text\" id=\"secondDate\" name=\"secondDate\" value=\"2020-05-15\">\n"+
+                    "<input type=\"text\" id=\"secondDate\" name=\"secondDate\" value=" + date +">\n"+
                     "<input type=\"submit\" value=\"Submit\"\n>" +
                     "</form>");
         }
         else{
             out.println("<form>\n" +
                     "<label for=\"firstDate\">First date:</label><br>\n" +
-                    "<input type=\"text\" id=\"firstDate\" name=\"firstDate\" value=\"2020-05-13\"><br>\n" +
+                    "<input type=\"text\" id=\"firstDate\" name=\"firstDate\" value=" + date.minusDays(7) + "><br>\n" +
                     "<label for=\"secondDate\">Second Date:</label><br>\n" +
-                    "<input type=\"text\" id=\"secondDate\" name=\"secondDate\" value=\"2020-05-20\">\n"+
+                    "<input type=\"text\" id=\"secondDate\" name=\"secondDate\" value=" + date +">\n"+
                     "<input type=\"submit\" value=\"Submit\"\n>" +
                     "</form>");
             out.println("<h4>  Last Data From SQL  </h4> ");
