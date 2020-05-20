@@ -3,12 +3,9 @@ package repository;
 import models.Sensor;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.DriverManager;
 import java.util.ArrayList;
@@ -18,7 +15,6 @@ import java.util.Properties;
 public class Database {
     Properties p = new Properties();
 
-    int size;
     public Database() throws IOException {
         p.load(new FileInputStream("src/config.properties"));
         String hostName = p.getProperty("hostName");
@@ -43,7 +39,7 @@ public class Database {
 
                 while (resultSet.next())
                 {
-                    sensorList.add(new Sensor(resultSet.getInt("Id"),resultSet.getDouble("Temperature"),resultSet.getDouble("Humidity"),resultSet.getDate("Created").toString(),resultSet.getTime("Created").toString()));
+                    sensorList.add(new Sensor(resultSet.getInt("Id"),resultSet.getDouble("Temperature"),resultSet.getDouble("Humidity"),resultSet.getDate("Created").toString(),resultSet.getTime("Created").toLocalTime().plusHours(2).toString()));
                 }
                 connection.close();
             }
@@ -67,7 +63,7 @@ public class Database {
 
                 while (resultSet.next())
                 {
-                    sensorList.add(new Sensor(resultSet.getInt("Id"),resultSet.getDouble("Temperature"),resultSet.getDouble("Humidity"),resultSet.getDate("Created").toString(),resultSet.getTime("Created").toString()));
+                    sensorList.add(new Sensor(resultSet.getInt("Id"),resultSet.getDouble("Temperature"),resultSet.getDouble("Humidity"),resultSet.getDate("Created").toString(),resultSet.getTime("Created").toLocalTime().plusHours(2).toString()));
                 }
                 connection.close();
             }
@@ -92,7 +88,7 @@ public class Database {
 
                 while (resultSet.next())
                 {
-                    sensorList.add(new Sensor(resultSet.getInt("Id"),resultSet.getDouble("Temperature"),resultSet.getDouble("Humidity"),resultSet.getDate("Created").toString(),resultSet.getTime("Created").toString()));
+                    sensorList.add(new Sensor(resultSet.getInt("Id"),resultSet.getDouble("Temperature"),resultSet.getDouble("Humidity"),resultSet.getDate("Created").toString(),resultSet.getTime("Created").toLocalTime().plusHours(2).toString()));
                 }
                 connection.close();
             }
