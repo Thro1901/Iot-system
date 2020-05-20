@@ -12,7 +12,7 @@ import java.time.LocalDate;
 
 @WebServlet(name = "DateSearch", urlPatterns = {"/SearchDates"})
 public class DateSearch extends HttpServlet {
-    LocalDate date = LocalDate.now();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Database db = new Database();
@@ -40,18 +40,18 @@ public class DateSearch extends HttpServlet {
         if (d1 == null || d2== null){
             out.println("<form>\n" +
                     "<label for=\"firstDate\">First date:</label><br>\n" +
-                    "<input type=\"text\" id=\"firstDate\" name=\"firstDate\" value=" + date.minusDays(7) + "><br>\n" +
+                    "<input type=\"text\" id=\"firstDate\" name=\"firstDate\" value="+ LocalDate.now().minusDays(7) +"><br>\n" +
                     "<label for=\"secondDate\">Second Date:</label><br>\n" +
-                    "<input type=\"text\" id=\"secondDate\" name=\"secondDate\" value=" + date +">\n"+
+                    "<input type=\"text\" id=\"secondDate\" name=\"secondDate\" value="+ LocalDate.now() + ">\n"+
                     "<input type=\"submit\" value=\"Submit\"\n>" +
                     "</form>");
         }
         else{
             out.println("<form>\n" +
                     "<label for=\"firstDate\">First date:</label><br>\n" +
-                    "<input type=\"text\" id=\"firstDate\" name=\"firstDate\" value=" + date.minusDays(7) + "><br>\n" +
+                    "<input type=\"text\" id=\"firstDate\" name=\"firstDate\" value="+ LocalDate.now().minusDays(7) +"><br>\n" +
                     "<label for=\"secondDate\">Second Date:</label><br>\n" +
-                    "<input type=\"text\" id=\"secondDate\" name=\"secondDate\" value=" + date +">\n"+
+                    "<input type=\"text\" id=\"secondDate\" name=\"secondDate\" value="+ LocalDate.now() + ">\n"+
                     "<input type=\"submit\" value=\"Submit\"\n>" +
                     "</form>");
             out.println("<h4>  Last Data From SQL  </h4> ");
