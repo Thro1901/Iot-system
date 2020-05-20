@@ -2,7 +2,6 @@ package com.zetcode;
 
 import models.Sensor;
 import repository.Database;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
